@@ -1,0 +1,6 @@
+resources/model.ckpt
+test/output/
+*.tar
+*.tar.gz
+__pycache__/
+*.pyc

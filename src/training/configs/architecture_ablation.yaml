@@ -1,0 +1,107 @@
+experiment:
+  name: architecture_ablation
+  seed: 42
+  experiments_dir: src/training/experiments
+  checkpoints_dir: src/training/checkpoints
+
+data:
+  root: outputs/preprocessed_expert/mha
+  batch_size: 8
+  num_workers: 4
+  split_mode: fixed
+  split_file: src/training/configs/resunet_baseline_split.json
+  val_fraction: 0.2
+  augment: true
+  pad_multiple: 16
+  augmentation:
+    hflip_prob: 0.5
+    vflip_prob: 0.1
+    affine_prob: 0.8
+    max_rotate_deg: 10.0
+    max_translate_frac: 0.04
+    min_scale: 0.95
+    max_scale: 1.05
+    elastic_prob: 0.15
+    elastic_grid: 8
+    elastic_magnitude: 3.0
+    noise_prob: 0.15
+    noise_std: 0.02
+
+model:
+  type: unet
+  backbone: tu-tf_efficientnetv2_s.in21k_ft_in1k
+  encoder_weights: imagenet
+  in_channels: 1
+  out_channels: 1
+
+module:
+  type: translation
+
+loss:
+  weights:
+    l1: 1.0
+    mse: 0.05
+    roi_l1: 0.0
+    ssim: 0.25
+    roi_ssim: 0.0
+    gradient: 0.0
+    roi_gradient: 0.0
+    perceptual: 0.0
+    warmup_epochs: 0
+    perceptual_clip_sigma: 5.0
+    seg: 0.0
+  seg:
+    enabled: false
+    checkpoint: src/training/checkpoints/segmenter_unet_lite/version_3/last.ckpt
+    threshold: 0.5
+    model:
+      type: tiny_unet
+      in_channels: 1
+      out_channels: 1
+      base_channels: 16
+      depth: 4
+
+optimizer:
+  type: adamw
+  learning_rate: 0.0002
+  weight_decay: 0.0001
+
+trainer:
+  max_epochs: 500
+  accelerator: auto
+  devices: auto
+  precision: 16-mixed
+  accumulate_grad_batches: 1
+  gradient_clip_val: 1.0
+  check_val_every_n_epoch: 1
+  limit_train_batches: 1.0
+  limit_val_batches: 1.0
+  fast_dev_run: false
+  resume_checkpoint:
+
+evaluation:
+  official_models_dir: src/evaluation/models
+  official_eval_every_n_epochs: 0
+
+logging:
+  log_every_n_steps: 10
+  rich_progress: true
+  model_summary_depth: 3
+  lr_logging_interval: epoch
+  launch_tensorboard: true
+  tensorboard_port: 1234
+  visualize_val_samples: true
+  num_visualization_cases: 4
+
+checkpoint:
+  filename: "{v_num:02d}-{epoch:03d}-{val_loss:.5f}"
+  monitor: val_loss
+  mode: min
+  save_top_k: 1
+
+early_stopping:
+  enabled: true
+  monitor: val_loss
+  mode: min
+  patience: 25
+  min_delta: 0.0
