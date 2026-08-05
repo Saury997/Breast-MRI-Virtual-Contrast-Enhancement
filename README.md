@@ -19,21 +19,6 @@ This repository contains the official PyTorch implementation of our award-winnin
 
 *Overview of the proposed supervised virtual contrast-enhancement framework. V1 utilizes the frozen TinyUNet for segmentation supervision, while V2 introduces the auxiliary lesion-aware decoding branch and attention mechanism.*
 
-## 📂 Repository Structure
-
-```text
-├── src/
-│   ├── models/          # U-Net Generator, Patch Discriminator, TinyUNet, Auxiliary Branch
-│   ├── losses/          # Multi-domain losses (LPIPS, Wavelet, ROI-SSIM, Boundary, etc.)
-│   ├── datamodules/     # PyTorch Lightning DataModules for MAMA-MIA dataset
-│   ├── train.py         # Training scripts for V1 and V2
-│   └── inference.py     # Inference and evaluation scripts
-├── configs/             # YAML configuration files for hyperparameters
-├── assets/              # Images for README
-├── LICENSE
-└── README.md
-```
-
 ## ⚙️ Environment Setup
 Our trining framework is built upon [PyTorch Lightning](https://lightning.ai/), a high-level framework that eliminates boilerplate code to let you focus on research logic while natively supporting scalable multi-GPU training and rigorous reproducibility.
 ```bash
@@ -50,7 +35,7 @@ pip install -r requirements.txt
 ```
 
 ## 📦 Dataset Preparation
-This project utilizes the [MAMA-MIA dataset](https://www.synapse.org/Synapse:syn60868042/wiki/628716) provided by the MAMA-SYNTH Challenge. Please download it and preprocess the dataset according to the official guidelines in [this repo](https://github.com/mama-research/mama-synth/). Based on the training set provided in the challenge, we divided it into training, validation and test sets in a ratio of 7:1:2 for model development and debugging, which is determined by the `configs/split.json`. 
+This project utilizes the [MAMA-MIA dataset](https://www.synapse.org/Synapse:syn60868042/wiki/628716) provided by the MAMA-SYNTH Challenge. Please download it and preprocess the dataset according to the official guidelines in [this repo](https://github.com/mama-research/mama-synth/). Based on the training set provided in the challenge, we divided it into training and validation/test sets in a ratio of 8:2 for model development and debugging, which is determined by the `configs/split.json`. 
 
 Below is a summary of the dataset's key characteristics:
 
