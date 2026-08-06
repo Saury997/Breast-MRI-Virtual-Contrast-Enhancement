@@ -14,10 +14,11 @@ This repository contains the official PyTorch implementation of our award-winnin
 - **Lesion-Aware Decoding (V2)**: We introduce an auxiliary segmentation decoder parallel to the synthesis decoder. Multi-scale segmentation features are injected into the synthesis branch, and the predicted lesion probability map guides the final synthesis via a **soft spatial attention mechanism**, significantly improving tumor-boundary accuracy (HD95) and downstream segmentation utility.
 
 ## 🏗️ Framework Overview
-
-![Framework Overview](assets/framework.png)
-
-*Overview of the proposed supervised virtual contrast-enhancement framework. V1 utilizes the frozen TinyUNet for segmentation supervision, while V2 introduces the auxiliary lesion-aware decoding branch and attention mechanism.*
+<div align="center">
+  <img src="assets/framework.png" alt="Framework Architecture" width="800"/>
+  <br>
+  <em> Overview of the proposed supervised virtual contrast-enhancement framework. V1 utilizes the frozen TinyUNet for segmentation supervision, while V2 introduces the auxiliary lesion-aware decoding branch and attention mechanism.</em>
+</div>
 
 ## ⚙️ Environment Setup
 Our trining framework is built upon [PyTorch Lightning](https://lightning.ai/), a high-level framework that eliminates boilerplate code to let you focus on research logic while natively supporting scalable multi-GPU training and rigorous reproducibility.
@@ -53,7 +54,7 @@ Below is a summary of the dataset's key characteristics:
 | Annotation process | Preliminary automatic masks corrected by 16 experts (9 years of breast-cancer experience on average), with additional visual quality assessment by two expert clinicians |
 | Harmonized metadata | 49 variables: 21 clinical, 6 demographic, and 22 imaging variables | 
 
-## 🚀 Training
+## 🚀 Training & Evaluation
 We provide configuration files for both our submitted model (V1) and our post-submission lesion-aware extension (V2).
 
 **Train V1 (Submitted Model):**
@@ -64,12 +65,17 @@ python src/training/train.py --config src/training/configs/v1.yaml
 ```bash
 python src/training/train.py --config src/training/configs/v2.yaml
 ```
+**Evaluate model:**
+```bash
+python src/evaluation/eval.py --config src/training/configs/v1.yaml  --checkpoint checkpoints/v1.ckpt
+```
 
 ## 🖼️ Qualitative Results
-
-![Framework Overview](assets/qualitative_result.png)
-
-*Representative cases showing the pre-contrast input, synthesized peak-enhancement image, ground-truth target, difference map, and the probability map predicted by the auxiliary segmentation branch.*
+<div align="center">
+  <img src="assets/qualitative_result.png alt="Qualitative Results" width="800"/>
+  <br>
+  <em> Representative cases showing the pre-contrast input, synthesized peak-enhancement image, ground-truth target, difference map, and the probability map predicted by the auxiliary segmentation branch.</em>
+</div>
 
 ## 🙏 Acknowledgements
 We thank the organizers of the [MAMA-SYNTH Challenge](https://www.ub.edu/mama-synth/mama-synth) and the creators of the [MAMA-MIA dataset](https://github.com/LidiaGarrucho/MAMA-MIA) for providing this valuable benchmark. 
