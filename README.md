@@ -58,11 +58,11 @@ We provide configuration files for both our submitted model (V1) and our post-su
 
 **Train V1 (Submitted Model):**
 ```bash
-python src/train.py --config configs/v1.yaml
+python src/training/train.py --config src/training/configs/v1.yaml
 ```
 **Train V2 (Lesion-Aware Extension):**
 ```bash
-python src/train.py --config configs/v2.yaml
+python src/training/train.py --config src/training/configs/v2.yaml
 ```
 
 ## 🖼️ Qualitative Results
