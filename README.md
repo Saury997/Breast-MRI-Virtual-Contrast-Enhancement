@@ -72,7 +72,7 @@ python src/evaluation/eval.py --config src/training/configs/v1.yaml  --checkpoin
 
 ## 🖼️ Qualitative Results
 <div align="center">
-  <img src="assets/qualitative_result.png alt="Qualitative Results" width="800"/>
+  <img src="assets/qualitative_result.png" alt="Qualitative Results" width="800"/>
   <br>
   <em> Representative cases showing the pre-contrast input, synthesized peak-enhancement image, ground-truth target, difference map, and the probability map predicted by the auxiliary segmentation branch.</em>
 </div>
