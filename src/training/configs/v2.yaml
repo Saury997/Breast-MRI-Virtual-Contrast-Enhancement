@@ -43,6 +43,11 @@ model:
   aux_segmentation:
     enabled: true
     out_channels: 1
+    attention:
+      enabled: true
+      mode: decoder_final_gate
+      strength: 1.0
+      warmup_epochs: 20
 module:
   type: adversarial_translation
 
