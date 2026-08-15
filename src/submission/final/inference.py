@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MAMA-SYNTH loss-no-val Grand Challenge inference.
+"""MAMA-SYNTH Grand Challenge inference.
 
 Input:
     /input/images/pre-contrast-dce-mri-slice-breast/<uuid>.mha
@@ -7,7 +7,7 @@ Input:
 Output:
     /output/images/synthetic-contrast-dce-mri-slice-breast/output.mha
 
-The model is an SMP U-Net++ with an EfficientNet-B4 encoder. It predicts a
+The model is an SMP U-Net with an EfficientNet-B4 encoder. It predicts a
 post-contrast residual, and the final output is pre_contrast + residual.
 Training-only TinyUNet segmentation supervision, perceptual-loss weights, and
 auxiliary segmentation-head weights in the checkpoint are ignored during
@@ -118,7 +118,7 @@ def create_network() -> torch.nn.Module:
             "segmentation-models-pytorch is required for loss-no-val inference."
         ) from exc
 
-    return smp.UnetPlusPlus(
+    return smp.Unet(
         encoder_name="efficientnet-b4",
         encoder_weights=None,
         in_channels=1,
@@ -223,7 +223,7 @@ def write_output(
 
 def run() -> int:
     print("=" * 60)
-    print("MAMA-SYNTH loss-no-val")
+    print("MAMA-SYNTH final test")
     print("=" * 60)
 
     device = _resolve_device(REQUESTED_DEVICE)
