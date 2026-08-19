@@ -2,7 +2,7 @@
 
 🏆 **Top-3 Winner** of the [MAMA-SYNTH Challenge](https://www.ub.edu/mama-synth/mama-synth) at **MICCAI 2026**  
 <div>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white" alt="Python"></a> <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-2.9-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch"></a> <a href="https://lightning.ai/train#pytorch-lightning"><img src="https://img.shields.io/badge/Lightning-2.5-792DE4?logo=lightning&logoColor=white" alt="Lightning"></a> <a href="https://conferences.miccai.org/2026/"><img src="https://img.shields.io/badge/MICCAI-2026-FFD700?logo=brain&logoColor=black" alt="MICCAI 2026"></a> <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white" alt="Python"></a> <a href="https://pytorch.org/"><img src="https://img.shields.io/badge/PyTorch-2.9-EE4C2C?logo=pytorch&logoColor=white" alt="PyTorch"></a> <a href="https://lightning.ai/pytorch-lightning"><img src="https://img.shields.io/badge/Lightning-2.5-792DE4?logo=lightning&logoColor=white" alt="Lightning"></a> <a href="https://conferences.miccai.org/2026/"><img src="https://img.shields.io/badge/MICCAI-2026-FFD700?logo=brain&logoColor=black" alt="MICCAI 2026"></a> <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
 </div>
 
 This repository contains the official PyTorch implementation of our award-winning framework for **Virtual Contrast Enhancement in Breast MRI**. We present a multi-supervised and lesion-aware deterministic synthesis framework that achieves state-of-the-art performance without relying on complex generative models like Diffusion or Flow Matching.
@@ -21,7 +21,7 @@ This repository contains the official PyTorch implementation of our award-winnin
 </div>
 
 ## ⚙️ Environment Setup
-Our trining framework is built upon [PyTorch Lightning](https://lightning.ai/train#pytorch-lightning), a high-level framework that eliminates boilerplate code to let you focus on research logic while natively supporting scalable multi-GPU training and rigorous reproducibility.
+Our trining framework is built upon [PyTorch Lightning](https://lightning.ai/pytorch-lightning), a high-level framework that eliminates boilerplate code to let you focus on research logic while natively supporting scalable multi-GPU training and rigorous reproducibility.
 ```bash
 # Clone the repository
 git clone https://github.com/Saury997/Breast-MRI-Virtual-Contrast-Enhancement.git
